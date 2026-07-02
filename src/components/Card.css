@@ -10,6 +10,13 @@
     background-color: rgb(27, 214, 168);
 }
 
+.cardContainer:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
+
+
 img {
     width: 100%;
     height: 275px;

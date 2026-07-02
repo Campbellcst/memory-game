@@ -13,6 +13,7 @@ function App() {
       <p>Get points by clikcing on an image but don't click on any more than once!</p>
       <Scoreboard />
       <CardGrid />
+    
     </>
   )
 }

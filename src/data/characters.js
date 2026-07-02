@@ -30,41 +30,41 @@ const characters = [
         name: "Pikachu",
         image: pikachu,
     },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    }
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // },
+    // {
+    //     id: 5,
+    //     name: "Pikachu",
+    //     image: pikachu,
+    // }
 ]
 
 export default characters

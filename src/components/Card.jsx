@@ -1,10 +1,8 @@
 import "./Card.css"
 
-function Card({name, image}) {
-    console.log(name, image)
-    
+function Card({name, image, onClick}) {
     return (
-        <div className="cardContainer">
+        <div className="cardContainer" onClick={onClick}>
             <div className="imgContainer">
                 <img src={image}/>
             </div>
