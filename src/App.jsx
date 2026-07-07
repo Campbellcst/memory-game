@@ -6,14 +6,61 @@ import characters from './data/characters'
 
 function App() {
 
+  const [cards, setCards] = useState(characters);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+  const [lastClickedCard, setLastClickedCard] = useState("");
+  const [prevNames, setPrevNames] = useState([]);
+  
+
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) { 
+            
+            // Generate random index 
+            const j = Math.floor(Math.random() * (i + 1));
+                        
+            // Swap elements at indices i and j
+            const temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    function handleScore(name) {
+      let newArr = [...prevNames];
+      newArr.push(name);
+      setPrevNames(newArr)
+
+      if (prevNames.includes(name)) {
+        setScore(0);
+        setPrevNames([]);
+      } else {
+      setScore(score + 1);
+      }
+      if (score >= highScore) {
+          setHighScore(score)
+        }
+      console.log(newArr);
+    }
+
+    function handleClick(card) {
+        //shuffle logic
+        console.log(card.name);
+        const shuffled = [...cards];
+        shuffle(shuffled);
+        setCards(shuffled);
+
+
+        //score logic
+        handleScore(card.name);
+    }
 
   return (
     <>
       <h1>Pokemon Memory Game</h1>
       <p>Get points by clikcing on an image but don't click on any more than once!</p>
-      <Scoreboard />
-      <CardGrid />
-    
+      <Scoreboard score={score} highScore={highScore}/>
+      <CardGrid cards={cards} onCardClick={handleClick}/>
     </>
   )
 }

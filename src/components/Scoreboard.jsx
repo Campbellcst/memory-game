@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-function Scoreboard() {
+function Scoreboard({score, highScore}) {
     
-    const [score, setScore] = useState(0);
-    const [highScore, setHighScore] = useState(0);
-
+    
+    
     return (
         <>
         <p>Score: {score}</p>
