@@ -1,70 +1,35 @@
-import charmander from "../assets/Images/charmander.jpg"
-import diglett from "../assets/Images/diglett.jpg"
-import ditto from "../assets/Images/ditto.jpg"
-import mew from "../assets/Images/mew.jpg"
-import pikachu from "../assets/Images/pikachu.jpg"
+async function fetchPokemon() {
+    let arrLength = 12;
+    let pokemonArr = [];
+    
+    function getRandomId(max) {
+        return Math.floor(Math.random() * max) + 1
+    }
+    
+    try {
 
-const characters = [
-    {
-        id: 1,
-        name: "Charmander",
-        image: charmander,
-    },
-    {
-        id: 2,
-        name: "Diglett",
-        image: diglett,
-    },
-    {
-        id: 3,
-        name: "Ditto",
-        image: ditto,
-    },
-    {
-        id: 4,
-        name: "Mew",
-        image: mew,
-    },
-    {
-        id: 5,
-        name: "Pikachu",
-        image: pikachu,
-    },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // },
-    // {
-    //     id: 5,
-    //     name: "Pikachu",
-    //     image: pikachu,
-    // }
-]
+        for (let i=0; i < arrLength; i++) {
+            let id = getRandomId(1000);
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)  
+            
+            if (!response.ok) {
+                throw new Error("Couldn't fetch resource");
+            }
+            const data = await response.json();
+            const pokemonSprite = data.sprites.front_default;
+            const pokemonName = data.species.name;
+            
+            pokemonArr.push({id: id, name: pokemonName, image: pokemonSprite});
+        }    
+    }
 
-export default characters
+    catch(error) {
+        console.log(error);
+    }
+
+    return pokemonArr;
+}
+
+//const arr = await fetchPokemon();
+
+export default fetchPokemon

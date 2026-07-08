@@ -1,59 +1,70 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Scoreboard from './components/Scoreboard'
 import Card from './components/Card'
 import CardGrid from './components/CardGrid'
-import characters from './data/characters'
+import fetchPokemon from './data/characters'
 
 function App() {
-
-  const [cards, setCards] = useState(characters);
+  const [cards, setCards] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [lastClickedCard, setLastClickedCard] = useState("");
   const [prevNames, setPrevNames] = useState([]);
   
+  useEffect(() => {
+    
+    async function getPokemon() {
+      const characters = await fetchPokemon();
 
-    function shuffle(arr) {
-        for (let i = arr.length - 1; i > 0; i--) { 
-            
-            // Generate random index 
-            const j = Math.floor(Math.random() * (i + 1));
-                        
-            // Swap elements at indices i and j
-            const temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
+      setCards(characters);
     }
+    
+    getPokemon();
+    
+  }, []);
+  console.log(cards);
 
-    function handleScore(name) {
-      let newArr = [...prevNames];
-      newArr.push(name);
-      setPrevNames(newArr)
-
-      if (prevNames.includes(name)) {
-        setScore(0);
-        setPrevNames([]);
-      } else {
-      setScore(score + 1);
+  function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) { 
+          
+          // Generate random index 
+          const j = Math.floor(Math.random() * (i + 1));
+                      
+          // Swap elements at indices i and j
+          const temp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = temp;
       }
-      if (score >= highScore) {
-          setHighScore(score)
-        }
-      console.log(newArr);
+  }
+
+  function handleScore(name) {
+    let newArr = [...prevNames];
+    newArr.push(name);
+    setPrevNames(newArr)
+
+    if (prevNames.includes(name)) {
+      setScore(0);
+      setPrevNames([]);
+    } else {
+    setScore(score + 1);
     }
+    if (score >= highScore) {
+        setHighScore(score)
+      }
+    console.log(prevNames);
+  }
 
-    function handleClick(card) {
-        //shuffle logic
-        console.log(card.name);
-        const shuffled = [...cards];
-        shuffle(shuffled);
-        setCards(shuffled);
+  function handleClick(card) {
+      //shuffle logic
+      console.log(card.name);
+      const shuffled = [...cards];
+      shuffle(shuffled);
+      setCards(shuffled);
 
 
-        //score logic
-        handleScore(card.name);
-    }
+      //score logic
+      handleScore(card.name);
+  }
 
   return (
     <>
